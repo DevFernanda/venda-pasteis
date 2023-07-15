@@ -1,34 +1,43 @@
 <div class="container mx-auto py-10">
     <h2 class="text-2xl mb-4">Venda de Pasteis</h2>
-  
+
     <div class="flex justify-between mb-4">
       <div class="w-1/3 mr-6">
         <label class="block mb-2 font-bold" for="quantidadeCarne">Carne:</label>
         <input class="border rounded px-2 py-1 w-full" type="number" id="quantidadeCarne" [(ngModel)]="quantidadeCarne">
       </div>
-  
+
       <div class="w-1/3 mr-6">
         <label class="block mb-2 font-bold" for="quantidadeFrango">Frango:</label>
         <input class="border rounded px-2 py-1 w-full" type="number" id="quantidadeFrango" [(ngModel)]="quantidadeFrango">
       </div>
-  
+
       <div class="w-1/3 mr-6">
         <label class="block mb-2 font-bold" for="quantidadeBananinha">Bananinha:</label>
         <input class="border rounded px-2 py-1 w-full" type="number" id="quantidadeBananinha" [(ngModel)]="quantidadeBananinha">
       </div>
     </div>
-  
+
+    <div class="w-1/3 mr-6">
+      <label class="block mb-2 font-bold" for="quantidadeBananinha">Forma de Pagamento:</label>
+      <input class="border rounded px-2 py-1 w-full" type="text" id="fp" [(ngModel)]="fp">
+    </div>
+
+    <div class="w-1/3 mr-6">
+      <label class="block mb-2 font-bold" for="quantidadeBananinha">Observação:</label>
+      <input class="border rounded px-2 py-1 w-full" type="text" id="obs" [(ngModel)]="obs">
+    </div>
+
     <div class="mb-4">
       <label class="block mb-2 font-bold" for="valorPago">Pago pelo Cliente (R$):</label>
       <input class="border rounded px-2 py-1" type="number" id="valorPago" [(ngModel)]="valorPago">
     </div>
-  
+
     <div *ngIf="troco !== null" class="mb-4">
       <p class="mb-2">Troco a ser dado ao cliente:</p>
       <p class="font-bold text-lg">{{ troco | currency:'BRL' }}</p>
     </div>
-  
+
     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="calcularTroco()">Calcular Troco</button>
-    <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" (click)="limparFormulario()">Limpar</button>
+    <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" (click)="salvarVenda()">Salvar</button>
   </div>
-  

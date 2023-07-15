@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-venda-pasteis',
@@ -6,11 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./venda-pasteis.component.css']
 })
 export class VendaPasteisComponent {
-  quantidadeCarne: number=0;
-  quantidadeFrango: number=0;
-  quantidadeBananinha: number=0;
-  valorPago: number=0;
-  troco: number=0;
+  quantidadeCarne: number;
+  quantidadeFrango: number;
+  quantidadeBananinha: number;
+  fp: string;
+  obs: string;
+  valorPago: number;
+  troco: number;
+
+  constructor(private http: HttpClient) { }
 
   calcularTroco(): void {
     const valorPasteisCarne = 4.0; // Valor de cada pastel de carne
@@ -30,11 +36,36 @@ export class VendaPasteisComponent {
     }
   }
 
-  limparFormulario(): void {
+  salvarVenda(): void {
+    const url = 'http://localhost:8000/pasteis';
+
+    const venda = {
+      carne: this.quantidadeCarne,
+      frango: this.quantidadeFrango,
+      banana: this.quantidadeBananinha,
+      fp: this.fp,
+      obs: this.obs
+    };
+
+    this.http.post(url, venda)
+      .subscribe(
+        response => {
+          console.log('Venda salva com sucesso:', response);
+          this.resetarValores();
+        },
+        error => {
+          console.error('Erro ao salvar a venda:', error);
+        }
+      );
+  }
+
+  resetarValores(): void {
     this.quantidadeCarne = 0;
     this.quantidadeFrango = 0;
     this.quantidadeBananinha = 0;
     this.valorPago = 0;
     this.troco = 0;
+    this.fp = '',
+    this.obs = ''
   }
 }

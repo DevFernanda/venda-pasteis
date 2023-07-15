@@ -1,0 +1,27 @@
+<table class="table-auto">
+  <thead>
+    <tr>
+      <th class="px-4 py-2">Carne</th>
+      <th class="px-4 py-2">Frango</th>
+      <th class="px-4 py-2">Banana</th>
+      <th class="px-4 py-2">Forma de Pagamento</th>
+      <th class="px-4 py-2">Observação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pastel of pasteis">
+      <td class="border px-4 py-2">{{ pastel.carne }}</td>
+      <td class="border px-4 py-2">{{ pastel.frango }}</td>
+      <td class="border px-4 py-2">{{ pastel.banana }}</td>
+      <td class="border px-4 py-2">{{ pastel.fp }}</td>
+      <td class="border px-4 py-2">{{ pastel.obs }}</td>
+    </tr>
+    <tr class="totals-row">
+      <td class="border px-4 py-2 total-highlight">{{ totalCarne }}</td>
+      <td class="border px-4 py-2 total-highlight">{{ totalFrango }}</td>
+      <td class="border px-4 py-2 total-highlight">{{ totalBanana }}</td>
+      <td class="border px-4 py-2"></td>
+      <td class="border px-4 py-2"></td>
+    </tr>
+  </tbody>
+</table>
